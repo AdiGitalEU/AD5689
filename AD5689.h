@@ -9,9 +9,9 @@
 #define _AD5689_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
-	#include "arduino.h"
+#include "arduino.h"
 #else
-	#include "WProgram.h"
+#include "WProgram.h"
 #endif
 #include <SPI.h>
 
@@ -26,19 +26,26 @@
 #define CMD_READBACK_ENABLE					0b1001
 #define ADDR_DAC_A							0b0001
 #define ADDR_DAC_B							0b1000
-#define ADDR_DAC_AB							0b1001
+#define ADDR_DAC_AB						0b1001
 
 #define INTERNAL							0
 #define EXTERNAL							1
 
+#define RESET_PIN   
+
 class AD5689 {
 public:
-	AD5689(SPISettings spiConf, uint8_t CSpin);
-	void SetChannel(uint8_t channel, uint16_t vOut);
-	void SetReference(uint8_t source);
+    AD5689(SPISettings spiConf, uint8_t CSpin);
+    AD5689(SPISettings spiConf, uint8_t CSpin, uint8_t ResetPin);
+    void SetChannel(uint8_t channel, uint16_t vOut);
+    void SetReference(uint8_t source);
+    void SoftReset();
+    void HardReset();
 private:
-	SPISettings _spiConf;
-	uint8_t		_CSpin;
+    SPISettings _spiConf;
+    uint8_t		_CSpin;
+    uint8_t		_ResetPin;
+    bool        usesHardwareReset = false;
 };
 
 #endif
