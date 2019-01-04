@@ -1,7 +1,9 @@
 /*
+Simple library for driving Analog Devices AD5689/R digital to analog converter.
+
  Name:		AD5689.h
  Created:	5/2/2018 4:16:22 PM
- Author:	adi
+ Author:	Alek Krol adi@adigital.eu
  Editor:	http://www.visualmicro.com
 */
 

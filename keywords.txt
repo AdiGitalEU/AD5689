@@ -1,0 +1,5 @@
+AD5689		KEYWORD1
+SetChannel	KEYWORD2
+SetReference	KEYWORD2
+SoftReset		KEYWORD2
+HardReset		KEYWORD2
