@@ -17,7 +17,7 @@ Simple library for driving Analog Devices AD5689/R digital to analog converter.
 #endif
 #include <SPI.h>
 
-#define CMD_WRITE_TO_INPUT_REG				0b0001	//dependant on LDAC input
+#define CMD_WRITE_TO_INPUT_REG				0b0001	//dependent on LDAC input
 #define CMD_UPDATE_DAC_WITH_INPUT_REG		0b0010
 #define CMD_WRITE_AND_UPDATE_DAC			0b0011
 #define CMD_POWER_UP_DOWN_DAC				0b0100

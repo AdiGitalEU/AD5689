@@ -1,5 +1,5 @@
 /*
- This example generates oposite sinewaves about 1 Hz
+ This example generates opposite sinewaves about 1 Hz
   
  Pins configuration for testing chip/library:
  
