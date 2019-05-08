@@ -1,5 +1,5 @@
 /*
- This example generates oposite trianles on both outputs 
+ This example generates opposite trianles on both outputs 
   
  Pins configuration for testing chip/library:
  
