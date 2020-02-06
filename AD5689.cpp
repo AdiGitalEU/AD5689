@@ -7,6 +7,8 @@ Editor:	http://www.visualmicro.com
 
 #include "AD5689.h"
 
+AD5689::AD5689() {}
+
 AD5689::AD5689(SPISettings spiConf, uint8_t CSpin) {
     _spiConf = spiConf;
     _CSpin = CSpin;
@@ -14,10 +16,11 @@ AD5689::AD5689(SPISettings spiConf, uint8_t CSpin) {
     SPI.begin();
 }
 
-AD5689::AD5689(SPISettings spiConf, uint8_t CSpin, uint8_t ResetPin) 
+AD5689::AD5689(SPISettings spiConf, uint8_t CSpin, uint8_t ResetPin)
     :AD5689(spiConf, CSpin) {
     usesHardwareReset = true;
     _ResetPin = ResetPin;
+    pinMode(_ResetPin, OUTPUT);
 }
 
 void AD5689::SetChannel(uint8_t channel, uint16_t vOut) {
@@ -66,4 +69,14 @@ void AD5689::HardReset() {
         delayMicroseconds(1);   //minimum reset pulse width time is 30ns
         digitalWrite(_ResetPin, HIGH);
     }
+}
+
+void AD5689::PowerDown(uint8_t operatingModeA, uint8_t operatingModeB) {
+    SPI.beginTransaction(_spiConf);
+    digitalWrite(_CSpin, LOW);
+    SPI.transfer(CMD_POWER_UP_DOWN_DAC << 4);
+    SPI.transfer(0);
+    SPI.transfer(operatingModeB << 6 | 0xF << 2 | operatingModeA);
+    digitalWrite(_CSpin, HIGH);
+    SPI.endTransaction();
 }
